@@ -7,6 +7,9 @@ const searchBook = () => {
     const errorBox = document.getElementById('error-message');
     errorBox.innerText = '';
 
+    // clear total search result
+    document.getElementById('total-result').innerText = '';
+
     // check input field
     if(searchText === ''){
         errorBox.innerText = `Input field can't be empty !`;
@@ -16,14 +19,14 @@ const searchBook = () => {
         const url = `https://openlibrary.org/search.json?q=${searchText}`;
         fetch(url)
         .then(res => res.json())
-        .then(data => displayBooks(data.docs,searchText));
+        .then(data => displayBooks(data.docs));
     }
     
     // clear search field
     searchField.value = '';
 }
 
-const displayBooks = (books,searchText) =>{
+const displayBooks = (books) =>{
     const searResult = document.getElementById('search-result');
 
     // clear prev search result
@@ -34,7 +37,7 @@ const displayBooks = (books,searchText) =>{
 
 
     if(books.length === 0){
-        document.getElementById('error-message').innerText = `Sorry, ${searchText} Not Found !`;
+        document.getElementById('error-message').innerText = `Sorry,No Result Found !`;
     }
     else{
         books.forEach(book => {
