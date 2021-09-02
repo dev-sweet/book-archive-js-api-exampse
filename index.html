@@ -7,10 +7,29 @@
     <title>Book Archive</title>
     <!-- bootstrap stylesheet -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1 class="text-danger">Book Archive</h1>
+   <section class="py-5">
+       <div class="container">
+           <!-- search box -->
+        <div class="search-box">
+            <h1 class="text-center text-secondary">Welcome to Book Archive</h1>
+            <div class="input-group my-3 w-50 mx-auto">
+                <input id="search-field" type="text" class="form-control border border-danger"
+                    placeholder="Search your favorite book..">
+                <button class="btn btn-danger" type="button" id="search-button" onclick="searchBook()">Search</button>
+            </div>
+            <!-- total search result -->
+            <h4 class="py-3 text-secondary">Total Result : 100</h4>
+        </div>
 
-    <script src="./app.js"></script>
+        <!-- show search result by book name -->
+        <div id="search-result" class="row row-cols-1 row-cols-4 g-5">
+
+        </div>
+       </div>
+   </section>
+   <script src="./app.js"></script>
 </body>
 </html>
