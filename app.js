@@ -3,6 +3,9 @@ const searchBook = () => {
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
 
+    // clear previous search result 
+    document.getElementById('search-result').textContent = '';
+    
     // clear error field
     const errorBox = document.getElementById('error-message');
     errorBox.innerText = '';
@@ -19,7 +22,7 @@ const searchBook = () => {
         const url = `https://openlibrary.org/search.json?q=${searchText}`;
         fetch(url)
         .then(res => res.json())
-        .then(data => displayBooks(data.docs));
+        .then(data => displayBooks(data));
     }
     
     // clear search field
@@ -27,20 +30,18 @@ const searchBook = () => {
 }
 
 const displayBooks = (books) =>{
+    console.log(books.docs);
     const searResult = document.getElementById('search-result');
 
-    // clear prev search result
-    searResult.textContent = '';
-
     // show total search result
-    document.getElementById('total-result').innerText = `Total Result : ${books.length}`;
+    document.getElementById('total-result').innerText = `Total Result : ${books.numFound}`;
 
 
-    if(books.length === 0){
-        document.getElementById('error-message').innerText = `Sorry,No Result Found !`;
+    if(books.docs.length === 0){
+        document.getElementById('error-message').innerText = `Sorry, No Result Found !`;
     }
     else{
-        books.forEach(book => {
+        books.docs.forEach(book => {
             // set default value of image url,athorname,and first publish year
             let imageUrl = '';
             let authorName = '';
